@@ -52,7 +52,11 @@ export default {
               password:this.loginForm.password
             }
           })
-        console.log(res)
+          console.log(res)
+        if(res.meta.status!==200) return this.$message.error('登录失败')
+        window.sessionStorage.setItem('token',res.data.token)
+        this.$message.success('登录成功')
+        this.$router.push('/home')
       })
     },
     //重置
