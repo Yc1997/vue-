@@ -1,0 +1,71 @@
+/* 全局样式表 */
+
+html,
+body,
+#app {
+    height   : 100%;
+    margin   : 0;
+    padding  : 0;
+    min-width: 1366px;
+}
+
+/* .el-breadcrumb {
+    margin-bottom: 15px;
+    font-size    : 12px;
+}
+
+.el-card {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+}
+
+.el-table {
+    margin-top: 15px;
+    font-size : 12px;
+}
+
+.el-pagination {
+    margin-top: 15px;
+} */
+
+/* 
+这个不能写scoped里面
+scoped 让css私有化
+1. 让dom元素加上 一个不重复的data属性，
+2. css修饰时会加上这个data属性去选中该元素,权重也提升了
+
+使得其 scoped内的样式 私有化
+*/
+/* .el-cascader-menu {
+    height: 200px !important;
+} */
+
+/* cascader */
+/* .el-cascader-panel .el-radio {
+    position   : absolute;
+    z-index    : 10;
+    padding    : 0 10px;
+    width      : 132px;
+    height     : 34px;
+    line-height: 34px;
+}
+
+.el-cascader-panel .el-radio__input {
+    visibility: hidden;
+}
+
+.el-cascader-panel .el-input-node__postfix {
+    top: 10px;
+}
+
+.el-steps {
+    margin: 15px 0;
+}
+
+.el-step__title {
+    font-size: 13px;
+} */
+
+/* 富文本编辑器的样式 */
+/* .ql-editor {
+    height: 300px;
+} */
