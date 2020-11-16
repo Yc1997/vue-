@@ -24,8 +24,8 @@ export default {
   data(){
     return {
        loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: '123456'
       } ,
       loginFormRules:{
         username:[
@@ -46,16 +46,15 @@ export default {
       this.$refs[formName].validate(async valid=>{
         if(!valid) return;
         const {data:res} = await this.$http.get(
-          'http://timemeetyou.com:8889/api/private/v1/login',{ 
+          '/login',{ 
             params:{
               username:this.loginForm.username,
               password:this.loginForm.password
             }
           })
-          console.log(res)
         if(res.meta.status!==200) return this.$message.error('登录失败')
         window.sessionStorage.setItem('token',res.data.token)
-        this.$message.success('登录成功')
+        this.$message.success({message:'登录成功',duration:1000})
         this.$router.push('/home')
       })
     },
