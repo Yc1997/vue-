@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       menuList: [],
       iconObj: {
@@ -69,36 +69,34 @@ export default {
       defaultPath: ''
     }
   },
-  created () {
+  created() {
     let path = sessionStorage.getItem('path')
     this.defaultPath = path
   },
-  mounted () {
+  mounted() {
     this.getMenus()
   },
   methods: {
     //退出系统
-    logOut () {
+    logOut() {
       window.sessionStorage.clear()
       this.$message({ message: '退出成功', duration: 1000 })
       this.$router.replace('/login')
     },
     //获取侧边栏列表信息
-    async getMenus () {
+    async getMenus() {
       const { data: res } = await this.$http.get('/menus')
       if (res.meta.status !== 200) return this.$message.error('获取列表失败')
-      console.log(res);
       this.menuList = res.data
     },
     //点击伸缩展示侧边栏
-    changeAside () {
+    changeAside() {
       this.isShow = !this.isShow
     },
     //展开指定的 sub-menu
-    handleOpen (index, indexPath) {
-      console.log(index, indexPath);
+    handleOpen() {
     },
-    hanleClick (path) {
+    hanleClick(path) {
       sessionStorage.setItem('path', path)
       //点击列表时并没有高亮显示
       this.defaultPath = path
