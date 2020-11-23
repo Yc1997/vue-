@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 // import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
-import axios from 'axios'
+import request from './api/request'
 
 //引入全局样式
 import './assets/css/global.css'
@@ -12,7 +12,7 @@ import './assets/css/global.css'
 import './assets/element/element'
 import './assets/font/iconfont.css'
 // Vue.use(ElementUI)
-Vue.prototype.$http = axios
+Vue.prototype.$http = request
 
 Vue.config.productionTip = false
 
