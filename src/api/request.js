@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const request = axios.create({
   baseURL: 'http://timemeetyou.com:8889/api/private/v1',
+  // baseURL: 'http://api.ojbk666.top/api/private/v1/',
   timeout:5000
 })
 
