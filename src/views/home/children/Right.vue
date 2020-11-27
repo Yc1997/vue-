@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-      <el-breadcrumb-item>权限列表</el-breadcrumb-item>
-    </el-breadcrumb>
+     <Breadcrumb 
+        index='首页' 
+        index1='权限管理' 
+        index2='权限列表'>
+    </Breadcrumb>
     <el-card>
       <el-table :data="RightsData" border stripe>
         <el-table-column type="index" label="#"></el-table-column>
@@ -23,7 +23,11 @@
 </template>
 
 <script>
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
+  components:{
+    Breadcrumb
+  },
   data() {
     return {
       RightsData: [],
@@ -36,7 +40,6 @@ export default {
     //获取权限列表
     async getRightInfo() {
       const { data: res } = await this.$http.get('rights/list')
-      console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取权限列表失败')
       }

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>角色管理</el-breadcrumb-item>
-      <el-breadcrumb-item>角色列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <Breadcrumb 
+        index='首页' 
+        index1='角色管理' 
+        index2='角色列表'>
+    </Breadcrumb>
     <el-card>
       <el-row>
         <el-col><el-button type="primary" @click="dialogVisible = true">添加角色</el-button></el-col>
@@ -92,7 +92,11 @@
   </div>
 </template>
 <script>
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
+  components:{
+    Breadcrumb
+  },
   data() {
     return {
       RolesData: [],

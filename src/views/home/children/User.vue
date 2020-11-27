@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <Breadcrumb 
+        index='首页' 
+        index1='用户管理' 
+        index2='用户列表'>
+    </Breadcrumb>
     <el-card class="box-card" shadow="always">
       <el-row :gutter="20">
         <el-col :span="7">
@@ -115,7 +115,11 @@
 </template>
 
 <script>
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
+   components:{
+    Breadcrumb
+  },
   data() {
     // 自定义校验规则
     // 验证邮箱的自定义的规则
@@ -318,7 +322,6 @@ export default {
     async setRolesUser(userInfo) {
       this.setUserDialogVisible = true
       this.userInfo = userInfo
-      console.log(userInfo)
       const {data:res} = await this.$http.get('roles')
       console.log(res)
       if(res.meta.status!==200) {
@@ -332,7 +335,6 @@ export default {
         return this.$message.error('请选择分配的角色')
       }
       const {data:res} = await this.$http.put(`users/${this.userInfo.id}/role`,{rid:this.newUserId})
-      console.log(res)
       if(res.meta.status!==200) {
         return this.$message.error('分配角色失败')
       }

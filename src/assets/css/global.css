@@ -35,9 +35,9 @@ scoped 让css私有化
 
 使得其 scoped内的样式 私有化
 */
-/* .el-cascader-menu {
+.el-cascader-menu {
     height: 200px !important;
-} */
+}
 
 /* cascader */
 /* .el-cascader-panel .el-radio {
