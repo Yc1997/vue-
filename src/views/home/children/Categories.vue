@@ -131,8 +131,8 @@ export default {
       value: [],
       addCatesProps: {
         expandTrigger: 'hover',
-        value: 'cat_id',
-        label: 'cat_name',
+        value: 'cat_id',//最终会添加到双向绑定的数组中的id值(可根据项目需求自行设置最终网络请求需要的参数)
+        label: 'cat_name',// 最终选择后显示在级联选择器上的文字
         children: 'children',
       },
       //编辑修改分类的信息
