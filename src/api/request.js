@@ -3,9 +3,11 @@ import axios from 'axios'
 
 const request = axios.create({
   // baseURL: 'http://timemeetyou.com:8889/api/private/v1',
-  baseURL: 'http://api.ojbk666.top/api/private/v1/',
-  // baseURL: 'http://120.53.120.229:8888/api/private/v1',
-  timeout:5000
+  // baseURL: 'http://api.ojbk666.top/api/private/v1/',
+  baseURL: 'http://120.53.120.229:8888/api/private/v1',
+  timeout: 5000 ,
+  // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  // withCredentials: true
 })
 
 // 添加请求拦截器
