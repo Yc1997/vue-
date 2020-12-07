@@ -33,11 +33,11 @@
               <i :class="iconObj[item.id]"></i>
               <span>{{item.authName}}</span>
             </template>
-            <el-menu-item :index="k.path+''"
+            <el-menu-item :index="'/'+k.path"
                           active-text-color="#ffd04b"
                           v-for="k in item.children"
                           :key='k.id'
-                          @click="hanleClick(k.path)">
+                          @click="hanleClick('/'+k.path)">
               <i class="el-icon-menu"></i>
               <span slot="title">{{k.authName}}</span>
             </el-menu-item>

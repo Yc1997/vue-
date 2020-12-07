@@ -9,6 +9,8 @@ const Roles = () => import('@/views/home/children/Roles')
 const Right = () => import('@/views/home/children/Right')
 const Categories = () => import('@/views/home/children/Categories')
 const Params = () => import('@/views/home/children/Params')
+const Goods = () => import('@/views/home/children/Goods')
+const AddGoods = () => import('@/views/home/children/AddGoods')
 
 Vue.use(VueRouter)
 
@@ -16,14 +18,16 @@ const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
   {
-    path: '/home', component: Home, redirect: '/home/welcome',
+    path: '/home', component: Home, redirect: '/welcome',
     children: [
-      { path: 'welcome', component: Welcome },
-      { path: 'users', component: User },
-      { path: 'roles', component: Roles },
-      { path: 'rights', component: Right },
-      { path: 'categories', component: Categories },
-      { path: 'params', component: Params },
+      { path: '/welcome', component: Welcome },
+      { path: '/users', component: User },
+      { path: '/roles', component: Roles },
+      { path: '/rights', component: Right },
+      { path: '/categories', component: Categories },
+      { path: '/params', component: Params },
+      { path: '/goods', component: Goods },
+      { path: '/goods/add', component: AddGoods }
     ]
   }
 ]

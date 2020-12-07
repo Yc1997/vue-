@@ -40,7 +40,7 @@ scoped 让css私有化
 }
 
 /* cascader */
-/* .el-cascader-panel .el-radio {
+.el-cascader-panel .el-radio {
     position   : absolute;
     z-index    : 10;
     padding    : 0 10px;
@@ -63,9 +63,9 @@ scoped 让css私有化
 
 .el-step__title {
     font-size: 13px;
-} */
+}
 
 /* 富文本编辑器的样式 */
-/* .ql-editor {
+.ql-editor {
     height: 300px;
-} */
+}
