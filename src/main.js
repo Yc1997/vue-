@@ -8,6 +8,8 @@ import request from './api/request'
 import treeTable from 'vue-table-with-tree-grid'
 import quillEditor from 'vue-quill-editor'
 
+
+
 //富文本编辑器样式
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -21,6 +23,7 @@ import './assets/font/iconfont.css'
 import './assets/filter'
 // Vue.use(ElementUI)
 Vue.prototype.$http = request
+
 
 Vue.config.productionTip = false
 Vue.component('tree-table', treeTable)
