@@ -3,70 +3,67 @@
     <!-- 头部 -->
     <el-header>
       <div>
-        <img class="header-img"
-             src="../../assets/heima.png"
-             alt="" />
+        <img class="header-img" src="../../assets/heima.png" alt="" />
         <span class="text">后台管理系统</span>
       </div>
-      <el-button :plain="true"
-                 type="info"
-                 @click="logOut">退出</el-button>
+      <el-button :plain="true" type="info" @click="logOut">退出</el-button>
     </el-header>
     <el-container>
       <!-- 左侧边栏 -->
-      <el-aside :width="isShow ? '64px':'200px'">
-        <div class="aside-item"
-             @click="changeAside">|||</div>
-        <el-menu background-color="#373d41"
-                 text-color="#fff"
-                 :unique-opened='true'
-                 :collapse='isShow'
-                 :collapse-transition='false'
-                 router
-                 @select='handleOpen'
-                 :default-active='defaultPath'>
+      <el-aside :width="isShow ? '64px' : '200px'">
+        <div class="aside-item" @click="changeAside">|||</div>
+        <el-menu
+          background-color="#373d41"
+          text-color="#fff"
+          :unique-opened="true"
+          :collapse="isShow"
+          :collapse-transition="false"
+          router
+          @select="handleOpen"
+          @open="open"
+          :default-active="defaultPath ? defaultPath : '/welcome'"
+        >
           <!-- default-active 把想要高亮显示的某一菜单index值赋值给它即可 -->
-          <el-submenu :index="item.id+''"
-                      v-for="(item) in menuList"
-                      :key="item.id">
+          <el-submenu :index="item.authName + ''" v-for="item in menuList" :key="item.id" @click="sb(item)">
             <template slot="title">
               <i :class="iconObj[item.id]"></i>
-              <span>{{item.authName}}</span>
+              <span>{{ item.authName }}</span>
             </template>
-            <el-menu-item :index="'/'+k.path"
-                          active-text-color="#ffd04b"
-                          v-for="k in item.children"
-                          :key='k.id'
-                          @click="hanleClick('/'+k.path)">
+            <el-menu-item :index="'/' + k.path" active-text-color="#ffd04b" v-for="k in item.children" :key="k.id" @click="hanleClick('/' + k.path, k.authName)">
               <i class="el-icon-menu"></i>
-              <span slot="title">{{k.authName}}</span>
+              <span slot="title">{{ k.authName }}</span>
             </el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
       <!-- 右侧主体内容 -->
       <el-main>
+        <Tags @changePath="changePath" @changeMenuPath="changeMenuPath"></Tags>
         <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
-
 </template>
 
 <script>
+import Tags from './children/Tag'
+import { mapMutations } from 'vuex'
 export default {
+  components: {
+    Tags,
+  },
   data() {
     return {
       menuList: [],
       iconObj: {
-        '125': 'iconfont icon-users',
-        '103': 'iconfont icon-tijikongjian',
-        '101': 'iconfont icon-shangpingouwudai2',
-        '102': 'iconfont icon-danju-tianchong',
-        '145': 'iconfont icon-baobiao',
+        125: 'iconfont icon-users',
+        103: 'iconfont icon-tijikongjian',
+        101: 'iconfont icon-shangpingouwudai2',
+        102: 'iconfont icon-danju-tianchong',
+        145: 'iconfont icon-baobiao',
       },
       isShow: false,
-      defaultPath: ''
+      defaultPath: '',
     }
   },
   created() {
@@ -77,9 +74,11 @@ export default {
     this.getMenus()
   },
   methods: {
+    ...mapMutations(['selectTabs', 'loginOut']),
     //退出系统
     logOut() {
       window.sessionStorage.clear()
+      this.loginOut()
       this.$message({ message: '退出成功', duration: 1000 })
       this.$router.replace('/login')
     },
@@ -88,19 +87,35 @@ export default {
       const { data: res } = await this.$http.get('/menus')
       if (res.meta.status !== 200) return this.$message.error('获取列表失败')
       this.menuList = res.data
+      // console.log(res)
     },
     //点击伸缩展示侧边栏
     changeAside() {
       this.isShow = !this.isShow
     },
     //展开指定的 sub-menu
-    handleOpen() {
+    handleOpen(index, path) {
+      console.log(index, path)
     },
-    hanleClick(path) {
+    hanleClick(path, name) {
       sessionStorage.setItem('path', path)
       //点击列表时并没有高亮显示
       this.defaultPath = path
-    }
+      this.selectTabs({ path, name, checked: true })
+    },
+    open(index) {
+      console.log(index)
+    },
+    sb(item) {
+      console.log(item)
+    },
+    changePath(event) {
+      this.defaultPath = event
+    },
+    changeMenuPath(event) {
+      console.log(event)
+      this.defaultPath = event
+    },
   },
 }
 </script>
